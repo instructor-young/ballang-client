@@ -3,6 +3,8 @@ import Heading from "@/components/Heading";
 import Page from "@/components/Page";
 import ProductCardsList from "@/components/ProductCardsList";
 
+export const revalidate = 10;
+
 async function HomePage() {
   const products = await api.products.getProducts();
 
