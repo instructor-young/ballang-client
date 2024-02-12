@@ -1,4 +1,5 @@
 import axios from "axios";
+import authAPI from "./auth.api/auth.api";
 import brandsAPI from "./brands.api/brands.api";
 import productsAPI from "./products.api/products.api";
 
@@ -7,6 +8,7 @@ export const client = axios.create({
 });
 
 const api = {
+  auth: authAPI,
   brands: brandsAPI,
   products: productsAPI,
 };

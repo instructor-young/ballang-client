@@ -20,7 +20,7 @@ async function BrandsPage(props: { searchParams: { brandId?: string } }) {
     <Page fullWidth>
       <Heading>Brands</Heading>
 
-      <nav className="mx-auto max-w-screen-lg mb-12">
+      <nav className="mx-auto max-w-screen-lg mb-16">
         <ul className="gap-x-4 text-sm grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-y-5 justify-items-center">
           <li className="col-span-3 sm:col-span-4 md:col-span-6 mb-4">
             <BrandLink href="/brands" label="ALL" isActive={!brandId} />

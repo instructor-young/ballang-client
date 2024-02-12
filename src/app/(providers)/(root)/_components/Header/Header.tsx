@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeaderMenu from "./components/HeaderMenu";
 
 function Header() {
   return (
@@ -15,14 +16,7 @@ function Header() {
         </ul>
       </nav>
 
-      <div className="ml-auto">
-        <Link
-          href="/sign-up"
-          className="text-[15px] font-medium text-gray-800 hover:text-black transition"
-        >
-          회원가입
-        </Link>
-      </div>
+      <HeaderMenu />
     </header>
   );
 }
