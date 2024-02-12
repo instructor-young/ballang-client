@@ -3,6 +3,7 @@ import Page from "@/components/Page";
 import formatPrice from "@/utils/formatPrice.utils";
 import Image from "next/image";
 import Link from "next/link";
+import AddToCartButton from "./_components/AddToCartButton";
 
 async function ProductPage(props: { params: { productId: string } }) {
   const productId = props.params.productId;
@@ -46,9 +47,7 @@ async function ProductPage(props: { params: { productId: string } }) {
             <div className="col-span-4">{product.onlineStock}</div>
           </div>
 
-          <button className="border border-slate-700 py-4 px-12 text-[15px] font-semibold bg-white transition hover:-translate-y-1 active:translate-y-0 hover:drop-shadow">
-            장바구니에 담기
-          </button>
+          <AddToCartButton productId={product.id} />
         </div>
       </section>
     </Page>

@@ -1,10 +1,6 @@
 import { Brand } from "@/types/Brand.type";
 import { Product } from "@/types/Product.type";
 
-export type GetBrandsData = {
-  brands: Brand[];
-};
+export type GetBrandsData = Brand[];
 
-export type GetBrandData = {
-  brand: Brand & { products: Product[] };
-};
+export type GetBrandData = Brand & { products: Product[] };
