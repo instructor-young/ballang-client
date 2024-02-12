@@ -1,8 +1,8 @@
-import { Product } from "@/types/Product.type";
-import { client } from ".";
+import { client } from "..";
+import { GetProductData, GetProductsData } from "./products.data";
 
 async function getProducts() {
-  const response = await client.get<{ products: Product[] }>("/products");
+  const response = await client.get<GetProductsData>("/products");
   const data = response.data;
   const { products } = data;
 
@@ -10,9 +10,7 @@ async function getProducts() {
 }
 
 async function getProduct(productId: number) {
-  const response = await client.get<{ product: Product }>(
-    `/products/${productId}`
-  );
+  const response = await client.get<GetProductData>(`/products/${productId}`);
   const data = response.data;
   const { product } = data;
 

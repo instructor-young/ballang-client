@@ -6,6 +6,14 @@ function Header() {
       <Link href="/" className="font-bold text-2xl">
         발랑
       </Link>
+
+      <nav className="ml-20">
+        <ul className="text-[15px] font-medium">
+          <li>
+            <Link href={"/brands"}>BRANDS</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }

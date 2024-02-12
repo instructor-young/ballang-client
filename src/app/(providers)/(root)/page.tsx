@@ -1,4 +1,5 @@
 import api from "@/api";
+import Heading from "@/components/Heading";
 import Page from "@/components/Page";
 import ProductCardsList from "@/components/ProductCardsList";
 
@@ -7,10 +8,8 @@ async function HomePage() {
 
   return (
     <Page>
-      <section className="flex flex-col items-center gap-y-12">
-        <h2 className="font-bold text-3xl">Trending</h2>
-        <ProductCardsList products={products} />
-      </section>
+      <Heading>Trending</Heading>
+      <ProductCardsList products={products} />
     </Page>
   );
 }
