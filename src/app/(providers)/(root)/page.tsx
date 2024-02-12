@@ -7,7 +7,7 @@ async function HomePage() {
   const products = await api.products.getProducts();
 
   return (
-    <Page>
+    <Page fullWidth>
       <Heading>Trending</Heading>
       <ProductCardsList products={products} />
     </Page>

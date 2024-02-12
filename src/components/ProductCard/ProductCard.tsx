@@ -13,7 +13,7 @@ function ProductCard({ product }: ProductCardProps) {
       href={`/products/${product.id}`}
       className="relative flex flex-col group"
     >
-      <div className="aspect-[12/16] relative mb-4">
+      <div className="aspect-[3/4] relative mb-4">
         <Image
           alt={product.name}
           src={product.imgSrc}

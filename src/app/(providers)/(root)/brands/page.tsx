@@ -17,7 +17,7 @@ async function BrandsPage(props: { searchParams: { brandId?: string } }) {
   }
 
   return (
-    <Page>
+    <Page fullWidth>
       <Heading>Brands</Heading>
 
       <nav className="mx-auto max-w-screen-lg mb-12">
