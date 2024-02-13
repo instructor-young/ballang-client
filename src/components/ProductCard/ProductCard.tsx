@@ -26,7 +26,7 @@ function ProductCard({ product }: ProductCardProps) {
       <div className="grid gap-y-2">
         <div className="text-sm font-bold">{product.brand.nameEn}</div>
         <h6 className="text-[15px]">{product.name}</h6>
-        <div className="text-sm flex items-baseline gap-x-1.5">
+        <div className="text-sm flex flex-col sm:flex-row items-baseline gap-1.5">
           <span className="text-red-500 line-through font-semibold">
             {formatPrice(product.originalPrice)}
           </span>
