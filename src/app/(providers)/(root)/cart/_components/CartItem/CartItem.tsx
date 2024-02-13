@@ -61,7 +61,7 @@ function CartItem({ cartItem }: CartItemProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 border border-black self-center h-8 w-24 items-stretch">
+      <div className="grid grid-cols-3 border border-black self-center h-4 w-12 sm:h-8 sm:w-24 items-stretch shrink-0">
         <button
           className="bg-black text-white flex items-center justify-center text-lg font-bold"
           onClick={handleClickMinus}
