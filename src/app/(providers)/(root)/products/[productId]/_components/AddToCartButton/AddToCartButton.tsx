@@ -7,7 +7,6 @@ import { useModal } from "@/contexts/modal.context";
 import useMutationAddItemToCart from "@/react-query/cart/useMutationAddItemToCart";
 import useMutationClearItemInCart from "@/react-query/cart/useMutationClearItemInCart";
 import useQueryGetCart from "@/react-query/cart/useQueryGetCart";
-import { useRouter } from "next/navigation";
 
 interface AddToCartButtonProps {
   productId: number;
@@ -15,9 +14,8 @@ interface AddToCartButtonProps {
 
 function AddToCartButton({ productId }: AddToCartButtonProps) {
   const auth = useAuth();
-  const router = useRouter();
   const modal = useModal();
-  const { data: cart } = useQueryGetCart();
+  const { data: cart } = useQueryGetCart(auth.isLoggedIn);
   const { mutateAsync: addItemToCart } = useMutationAddItemToCart();
   const { mutateAsync: clearItemInCart } = useMutationClearItemInCart();
   const isAlreadyAdded =
