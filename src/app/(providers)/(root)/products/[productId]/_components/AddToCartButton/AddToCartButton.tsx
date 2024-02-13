@@ -1,7 +1,9 @@
 "use client";
 
+import LogInModal from "@/app/(providers)/(root)/_components/Header/components/LogInModal";
 import Button from "@/components/Button";
 import { useAuth } from "@/contexts/auth.context";
+import { useModal } from "@/contexts/modal.context";
 import useMutationAddItemToCart from "@/react-query/cart/useMutationAddItemToCart";
 import useMutationClearItemInCart from "@/react-query/cart/useMutationClearItemInCart";
 import useQueryGetCart from "@/react-query/cart/useQueryGetCart";
@@ -14,6 +16,7 @@ interface AddToCartButtonProps {
 function AddToCartButton({ productId }: AddToCartButtonProps) {
   const auth = useAuth();
   const router = useRouter();
+  const modal = useModal();
   const { data: cart } = useQueryGetCart();
   const { mutateAsync: addItemToCart } = useMutationAddItemToCart();
   const { mutateAsync: clearItemInCart } = useMutationClearItemInCart();
@@ -22,7 +25,7 @@ function AddToCartButton({ productId }: AddToCartButtonProps) {
     cart?.items.findIndex((item) => item.product.id === productId) !== -1;
 
   const handleClickButton = async () => {
-    if (!auth.isLoggedIn) return router.push("/log-in");
+    if (!auth.isLoggedIn) return modal.open(<LogInModal />);
 
     if (isAlreadyAdded) {
       await clearItemInCart(productId);
