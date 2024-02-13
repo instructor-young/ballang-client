@@ -2,18 +2,25 @@
 
 import api from "@/api";
 import { Authenticated, useAuth } from "@/contexts/auth.context";
+import { useModal } from "@/contexts/modal.context";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import LogInModal from "../LogInModal";
 
 function HeaderMenu() {
   const auth = useAuth();
   const router = useRouter();
+  const modal = useModal();
 
   const handleClickLogOut = async () => {
     await api.auth.logOut();
     auth.setIsLoggedIn(false);
 
     router.push("/");
+  };
+
+  const handleClickLogIn = () => {
+    modal.open(<LogInModal />);
   };
 
   return (
@@ -43,12 +50,12 @@ function HeaderMenu() {
             >
               회원가입
             </Link>
-            <Link
-              href="/log-in"
+            <button
+              onClick={handleClickLogIn}
               className="text-[15px] font-medium text-gray-800 hover:text-black transition"
             >
               로그인
-            </Link>
+            </button>
           </>
         )}
       </div>
