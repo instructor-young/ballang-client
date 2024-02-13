@@ -3,7 +3,7 @@
 import Button from "@/components/Button";
 import { useAuth } from "@/contexts/auth.context";
 import useMutationAddItemToCart from "@/react-query/cart/useMutationAddItemToCart";
-import useMutationRemoveItemFromCart from "@/react-query/cart/useMutationRemoveItemFromCart";
+import useMutationClearItemInCart from "@/react-query/cart/useMutationClearItemInCart";
 import useQueryGetCart from "@/react-query/cart/useQueryGetCart";
 import { useRouter } from "next/navigation";
 
@@ -16,7 +16,7 @@ function AddToCartButton({ productId }: AddToCartButtonProps) {
   const router = useRouter();
   const { data: cart } = useQueryGetCart();
   const { mutateAsync: addItemToCart } = useMutationAddItemToCart();
-  const { mutateAsync: removeItemFromCart } = useMutationRemoveItemFromCart();
+  const { mutateAsync: clearItemInCart } = useMutationClearItemInCart();
   const isAlreadyAdded =
     auth.isLoggedIn &&
     cart?.items.findIndex((item) => item.product.id === productId) !== -1;
@@ -25,7 +25,7 @@ function AddToCartButton({ productId }: AddToCartButtonProps) {
     if (!auth.isLoggedIn) return router.push("/log-in");
 
     if (isAlreadyAdded) {
-      await removeItemFromCart(productId);
+      await clearItemInCart(productId);
 
       alert("장바구니에서 제거되었습니다");
     } else {
