@@ -1,8 +1,12 @@
+"use client";
+
 import useMutationAddItemToCart from "@/react-query/cart/useMutationAddItemToCart";
 import useMutationRemoveItemFromCart from "@/react-query/cart/useMutationRemoveItemFromCart";
 import { CartItem } from "@/types/CartItem.type";
 import formatPrice from "@/utils/formatPrice.utils";
 import Image from "next/image";
+import Link from "next/link";
+import { MouseEventHandler } from "react";
 
 interface CartItemProps {
   cartItem: CartItem;
@@ -14,11 +18,20 @@ function CartItem({ cartItem }: CartItemProps) {
   const { mutateAsync: addItemToCart } = useMutationAddItemToCart();
   const { mutateAsync: removeItemFromCart } = useMutationRemoveItemFromCart();
 
-  const handleClickMinus = () => removeItemFromCart(product.id);
-  const handleClickPlus = () => addItemToCart(product.id);
+  const handleClickMinus: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+    removeItemFromCart(product.id);
+  };
+  const handleClickPlus: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+    addItemToCart(product.id);
+  };
 
   return (
-    <div className="flex h-56 border-t py-5 gap-x-5">
+    <Link
+      href={`/products/${product.id}`}
+      className="flex h-40 sm:h-56 border-t py-5 gap-x-5"
+    >
       <div className="relative aspect-[3/4]">
         <Image
           fill
@@ -28,20 +41,20 @@ function CartItem({ cartItem }: CartItemProps) {
         />
       </div>
 
-      <div className="flex flex-col gap-y-2.5 grow">
-        <div className="font-bold">
+      <div className="flex flex-col gap-y-1 sm:gap-y-2.5 grow">
+        <div className="text-sm sm:text-base font-bold">
           {brand.nameKr} / {brand.nameEn}
         </div>
-        <h6 className="text-lg">{product.name}</h6>
+        <h6 className="text-sm sm:text-lg">{product.name}</h6>
 
-        <div className="flex gap-x-2.5">
+        <div className="flex gap-x-2.5 items-center text-sm sm:text-base ">
           <span className="line-through text-red-500">
             {formatPrice(product.originalPrice)}
           </span>
-          <span className="font-bold ">{formatPrice(product.price)}</span>
+          <span className="font-bold">{formatPrice(product.price)}</span>
         </div>
 
-        <div className="flex text-sm">
+        <div className="flex text-xs sm:text-sm">
           <div>
             {product.deliveryType} | 잔여재고 {product.onlineStock}ea
           </div>
@@ -65,7 +78,7 @@ function CartItem({ cartItem }: CartItemProps) {
           +
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
 

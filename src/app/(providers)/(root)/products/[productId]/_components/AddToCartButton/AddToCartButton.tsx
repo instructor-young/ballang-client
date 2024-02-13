@@ -18,6 +18,7 @@ function AddToCartButton({ productId }: AddToCartButtonProps) {
   const { mutateAsync: addItemToCart } = useMutationAddItemToCart();
   const { mutateAsync: removeItemFromCart } = useMutationRemoveItemFromCart();
   const isAlreadyAdded =
+    auth.isLoggedIn &&
     cart?.items.findIndex((item) => item.product.id === productId) !== -1;
 
   const handleClickButton = async () => {
